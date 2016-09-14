@@ -11,7 +11,7 @@ async function googleRequestAPI(data) {
       params: { key: process.env.GOOGLE_API_KEY, query: data.query },
       method: "get"
     });
-    const newResponse = response.data.results.splice(0, 15);
+    const newResponse = response.data.results.splice(0, 10);
     const endResponse = await getRequestImages(newResponse);
     return endResponse;
   } catch (error) {
