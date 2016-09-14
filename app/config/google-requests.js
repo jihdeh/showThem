@@ -1,5 +1,5 @@
 import axios from "axios";
-import { mapSeries, waterfall, mapLimit } from "async";
+import { mapSeries } from "async";
 import {get } from "lodash";
 import cloudinary from "../../util/cloudinary-config";
 import TextModel from "./google-text-search/search-model";
@@ -11,7 +11,7 @@ async function googleRequestAPI(data) {
       params: { key: process.env.GOOGLE_API_KEY, query: data.query },
       method: "get"
     });
-    const newResponse = response.data.results.splice(0, 4);
+    const newResponse = response.data.results;
     const endResponse = await getRequestImages(newResponse);
     return endResponse;
   } catch (error) {

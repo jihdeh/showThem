@@ -6,11 +6,11 @@ async function configElements(data) {
   let el = [];
   map(data, (value) => {
 
-    let subFomat = get(value, "opening_hours.open") ? value.opening_hours.open : "they seem to have closed, but i can't guarantee 100%";
+    let subFomat = get(value, "opening_hours.open_now") ? value.opening_hours.open_now : "they seem to have closed, but i can't guarantee 100%";
     el.push({
       title: value.name,
       image_url: value.image_url,
-      subtitle: value.formatted_address + " \nOpen: " + subFomat,
+      subtitle: value.formatted_address + " \n, Open?: " + subFomat,
       buttons: [{
         type: "element_share"
       }]
