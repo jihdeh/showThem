@@ -9,7 +9,7 @@ async function configElements(data) {
     let subFomat = get(value, "opening_hours.open") ? value.opening_hours.open : "they seem to have closed, but i can't guarantee 100%";
     el.push({
       title: value.name,
-      image_url: value.image,
+      image_url: value.image_url,
       subtitle: value.formatted_address + " \nOpen: " + subFomat,
       buttons: [{
         type: "element_share"
