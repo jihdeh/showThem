@@ -37,7 +37,7 @@ async function sendTextMessage(recipientId, messageText, postback) {
   console.log(messageText, "=response", );
   if (postback === "help") {
     response = messageText;
-  } else if (genericResponse.greetings.include(messageText)) {
+  } else if (genericResponse.greetings.includes(messageText)) {
     response = `Hi There!\nHow may i help you 🎩?`;
   } else {
     response = await listener(messageText, recipientId);
