@@ -6,9 +6,10 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
-  // destructureText(text).then(response => {
-  //   sendTextSeachResult(response, recipientId);
-  // });
+  console.log(text)
+  destructureText(text).then(response => {
+    sendTextSeachResult(response, recipientId);
+  });
 }
 
 // listener("show me restaurants in yaba nigeria");
@@ -34,14 +35,15 @@ async function compose(keyword, searchTerm) {
 async function sendTextMessage(recipientId, messageText, postback) {
   let response;
   messageText = messageText.toLowerCase();
-  console.log(messageText, "=response", );
   if (postback === "help") {
     response = messageText;
   } else if (genericResponse.greetings.includes(messageText)) {
     response = `Hi There!\nHow may i help you 🎩?`;
+  }
+  else if (genericResponse.byes.includes(messageText)) {
+    response = `Alright! Thank you, bye now 🙏`;
   } else {
-    response = await listener(messageText, recipientId);
-    return;
+    return listener(messageText, recipientId);
   }
   const messageData = {
     recipient: {

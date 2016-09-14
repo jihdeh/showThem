@@ -21,6 +21,7 @@ async function configElements(data) {
 
 async function sendTextSearch(searchResults, recipientId) {
   try {
+    console.log(searchResults, "===============")
     const elementParts = await configElements(searchResults);
     const actionData = {
       recipient: {
