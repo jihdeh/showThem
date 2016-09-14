@@ -6,13 +6,14 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
-  console.log(text);
-  if (keywords.show.includes(text)) {
-    destructureText(text).then(response => {
-      sendTextSeachResult(response, recipientId);
-    });
-  } else {
-    return sendMessage(recipientId, `Sorry command is incorrect, please check page`);
+  if (recipientId) {
+    if (/[keywords.show]/i.test(text)) {
+      destructureText(text).then(response => {
+        sendTextSeachResult(response, recipientId);
+      });
+    } else {
+      return sendMessage(recipientId, `Sorry command is incorrect, please check page`);
+    }
   }
 }
 
@@ -54,14 +55,16 @@ function sendMessage(recipientId, response) {
 
 async function sendTextMessage(recipientId, messageText, postback) {
   messageText = messageText.toLowerCase();
-  if (postback === "help") {
-    return sendMessage(recipientId, messageText);
-  } else if (genericResponse.greetings.includes(messageText)) {
-    return sendMessage(recipientId, `Hi There!\nHow may i help you 🎩?`);
-  } else if (genericResponse.byes.includes(messageText)) {
-    return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
-  } else {
-    return listener(messageText, recipientId);
+  if (recipientId) {
+    if (postback === "help") {
+      return sendMessage(recipientId, messageText);
+    } else if (genericResponse.greetings.includes(messageText)) {
+      return sendMessage(recipientId, `Hi There!\nHow may i help you 🎩?`);
+    } else if (genericResponse.byes.includes(messageText)) {
+      return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
+    } else {
+      return listener(messageText, recipientId);
+    }
   }
 }
 
