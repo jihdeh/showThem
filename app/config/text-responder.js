@@ -13,11 +13,14 @@ async function listener(text, recipientId) {
         if(response) {
           sendTextSeachResult(response, recipientId);
         } else {
-          sendMessage(recipientId, `Arggh sadly your search returned no results`);
+          sendMessage(recipientId, `
+            Arggh sadly your search returned no results \n
+            What if you try your search and you add your state/country? after? \n
+            For Example: show me party clubs newyork or show me shaunz bar lagos`);
         }
       });
     } else {
-      return sendMessage(recipientId, `Sorry command is incorrect, please check page`);
+      return sendMessage(recipientId, `Sorry command on show is incorrect, please check page`);
     }
   }
 }
@@ -37,7 +40,7 @@ async function compose(keyword, searchTerm) {
       return await textSearch(searchTerm);
       break;
     default:
-      return "Sorry command is incorrect, please check page";
+      return "Sorry command on default is incorrect, please check page";
       break;
   }
 }
