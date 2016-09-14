@@ -34,10 +34,10 @@ async function compose(keyword, searchTerm) {
 async function sendTextMessage(recipientId, messageText, postback) {
   let response;
   messageText = messageText.toLowerCase();
-  console.log(messageText, "=response");
+  console.log(messageText, "=response", );
   if (postback === "help") {
     response = messageText;
-  } else if (genericResponse.include(messageText)) {
+  } else if (genericResponse.greetings.include(messageText)) {
     response = `Hi There!\nHow may i help you 🎩?`;
   } else {
     response = await listener(messageText, recipientId);
