@@ -12,7 +12,7 @@ async function listener(text, recipientId) {
       sendTextSeachResult(response, recipientId);
     });
   } else {
-    return `Sorry command is incorrect, please check page`;
+    return sendMessage(recipientId, `Sorry command is incorrect, please check page`);
   }
 }
 
@@ -36,18 +36,7 @@ async function compose(keyword, searchTerm) {
   }
 }
 
-async function sendTextMessage(recipientId, messageText, postback) {
-  let response;
-  messageText = messageText.toLowerCase();
-  if (postback === "help") {
-    response = messageText;
-  } else if (genericResponse.greetings.includes(messageText)) {
-    response = `Hi There!\nHow may i help you 🎩?`;
-  } else if (genericResponse.byes.includes(messageText)) {
-    response = `Alright! Thank you, bye now 🙏`;
-  } else {
-    return listener(messageText, recipientId);
-  }
+function sendMessage(recipientId, response) {
   const messageData = {
     recipient: {
       id: recipientId
@@ -61,6 +50,21 @@ async function sendTextMessage(recipientId, messageText, postback) {
   } catch (error) {
     console.log("An error occured");
   }
+}
+
+async function sendTextMessage(recipientId, messageText, postback) {
+  let response;
+  messageText = messageText.toLowerCase();
+  if (postback === "help") {
+    response = messageText;
+  } else if (genericResponse.greetings.includes(messageText)) {
+    return response = `Hi There!\nHow may i help you 🎩?`;
+  } else if (genericResponse.byes.includes(messageText)) {
+    return response = `Alright! Thank you, bye now 🙏`;
+  } else {
+    return listener(messageText, recipientId);
+  }
+  sendMessage(recipientId, response);
 }
 
 export default sendTextMessage;
