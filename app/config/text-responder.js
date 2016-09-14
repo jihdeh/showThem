@@ -35,6 +35,7 @@ async function destructureText(text) {
 }
 
 async function compose(keyword, searchTerm) {
+  console.log(keyword, "word")
   switch (keyword) {
     case "show me":
       return await textSearch(searchTerm);

@@ -54,10 +54,10 @@ async function getRequestImages(candidates) {
         }
         cb(null, result);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     }, (err, result) => {
-      console.log(result)
+      console.log(result);
       if (err) {
         console.log("error getting google images result", err);
         return;

@@ -14,7 +14,7 @@ async function configElements(data) {
       buttons: [{
         type: "element_share"
       }]
-    })
+    });
   });
   return el;
 }
