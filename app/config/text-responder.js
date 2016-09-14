@@ -6,9 +6,9 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
-  destructureText(text).then(response => {
-    sendTextSeachResult(response, recipientId);
-  });
+  // destructureText(text).then(response => {
+  //   sendTextSeachResult(response, recipientId);
+  // });
 }
 
 // listener("show me restaurants in yaba nigeria");
@@ -40,20 +40,21 @@ async function sendTextMessage(recipientId, messageText, postback) {
     response = `Hi There!\nHow may i help you 🎩?`;
   } else {
     response = await listener(messageText, recipientId);
+    return;
   }
-  // const messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     text: response
-  //   }
-  // };
-  // try {
-  //   callSendAPI(messageData);
-  // } catch (error) {
-  //   console.log("An error occured");
-  // }
+  const messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: response
+    }
+  };
+  try {
+    callSendAPI(messageData);
+  } catch (error) {
+    console.log("An error occured");
+  }
 }
 
 export default sendTextMessage;
