@@ -36,6 +36,7 @@ async function sendTextSearch(searchResults, recipientId) {
         }
       }
     }
+    console.log(elementParts)
     callSendAPI(actionData);
   } catch(e) {
     console.log(e, "error generating temp buttons");
