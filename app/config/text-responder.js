@@ -7,7 +7,7 @@ import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
   console.log(text);
-  if (keywords.includes(text)) {
+  if (keywords.show.includes(text)) {
     destructureText(text).then(response => {
       sendTextSeachResult(response, recipientId);
     });
