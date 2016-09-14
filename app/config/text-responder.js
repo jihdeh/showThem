@@ -14,9 +14,7 @@ async function listener(text, recipientId) {
           sendTextSeachResult(response, recipientId);
         } else {
           sendMessage(recipientId, `
-            Arggh sadly your search returned no results \n
-            What if you try your search and you add your state/country? after? \n
-            For Example: show me party clubs newyork or show me shaunz bar lagos`);
+            Arggh sadly your search returned no results \nWhat if you try your search and you add your state/country? after? \nFor Example: show me party clubs newyork or show me shaunz bar lagos`);
         }
       });
     } else {
@@ -31,10 +29,10 @@ async function destructureText(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
   let searchTerm = newText.join(" ");
-  return await compose(checkKeyword, searchTerm);
+  return await composeText(checkKeyword, searchTerm);
 }
 
-async function compose(keyword, searchTerm) {
+async function composeText(keyword, searchTerm) {
   console.log(keyword, "word")
   switch (keyword) {
     case "show me":
