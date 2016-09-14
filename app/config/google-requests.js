@@ -12,8 +12,12 @@ async function googleRequestAPI(data) {
       method: "get"
     });
     const newResponse = response.data.results.splice(0, 10);
-    const endResponse = await getRequestImages(newResponse);
-    return endResponse;
+    if (newResponse.length > 0) {
+      const endResponse = await getRequestImages(newResponse);
+      return endResponse;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.trace("error fetching place", error);
   }

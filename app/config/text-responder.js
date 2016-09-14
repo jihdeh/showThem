@@ -1,4 +1,4 @@
-import callSendAPI from "./send-requests";
+import sendMessage from "./send-message";
 import helpText from "../util/helper-text";
 import textSearch from "./google-text-search";
 import genericResponse from "../util/generic-response-text";
@@ -9,7 +9,12 @@ async function listener(text, recipientId) {
   if (recipientId) {
     if (/[keywords.show]/i.test(text)) {
       destructureText(text).then(response => {
-        sendTextSeachResult(response, recipientId);
+        console.log(response)
+        if(response) {
+          sendTextSeachResult(response, recipientId);
+        } else {
+          sendMessage(recipientId, `Arggh sadly your search returned no results`);
+        }
       });
     } else {
       return sendMessage(recipientId, `Sorry command is incorrect, please check page`);
@@ -37,21 +42,7 @@ async function compose(keyword, searchTerm) {
   }
 }
 
-function sendMessage(recipientId, response) {
-  const messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: response
-    }
-  };
-  try {
-    callSendAPI(messageData);
-  } catch (error) {
-    console.log("An error occured");
-  }
-}
+
 
 async function sendTextMessage(recipientId, messageText, postback) {
   messageText = messageText.toLowerCase();
