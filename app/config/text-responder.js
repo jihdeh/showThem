@@ -53,18 +53,16 @@ function sendMessage(recipientId, response) {
 }
 
 async function sendTextMessage(recipientId, messageText, postback) {
-  let response;
   messageText = messageText.toLowerCase();
   if (postback === "help") {
-    response = messageText;
+    return sendMessage(recipientId, messageText);
   } else if (genericResponse.greetings.includes(messageText)) {
-    return response = `Hi There!\nHow may i help you 🎩?`;
+    return sendMessage(recipientId, `Hi There!\nHow may i help you 🎩?`);
   } else if (genericResponse.byes.includes(messageText)) {
-    return response = `Alright! Thank you, bye now 🙏`;
+    return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
   } else {
     return listener(messageText, recipientId);
   }
-  sendMessage(recipientId, response);
 }
 
 export default sendTextMessage;
