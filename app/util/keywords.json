@@ -1,4 +1,1 @@
-[{ 
-  "show": "show me",
-  "street": "street view"
-}]
+["show me", "street view"]

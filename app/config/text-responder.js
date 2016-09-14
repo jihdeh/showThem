@@ -5,13 +5,14 @@ import genericResponse from "../util/generic-response-text";
 import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
-let valid;
 async function listener(text, recipientId) {
-  console.log(text, valid);
-  if (valid) {
+  console.log(text);
+  if (keywords.includes(text)) {
     destructureText(text).then(response => {
       sendTextSeachResult(response, recipientId);
     });
+  } else {
+    return `Sorry command is incorrect, please check page`;
   }
 }
 
@@ -27,12 +28,10 @@ async function destructureText(text) {
 async function compose(keyword, searchTerm) {
   switch (keyword) {
     case "show me":
-      valid = true;
       return await textSearch(searchTerm);
       break;
     default:
-      valid = false;
-      return "Sorry command is incorrect, please check";
+      return "Sorry command is incorrect, please check page";
       break;
   }
 }
