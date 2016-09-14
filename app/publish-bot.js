@@ -6,7 +6,7 @@ import helpText from "./util/helper-text";
 function* webhook() {
   const data = this.request.body;
 
-  if (data.object == 'page') {
+  if (data.object == "page") {
     welcomeGreeting();
 
     data.entry.forEach(function(pageEntry) {
