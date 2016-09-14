@@ -91,16 +91,16 @@ function receivedPostback(event) {
 
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
-  switch(payload) {
-    case "PAYLOAD_GETTING_STARTED":
-      postbackMessage = helpText;
-      sendTextMessage(senderID, postbackMessage, "help");
-      break;
-    default: 
-      postbackMessage = helpText;
-      sendTextMessage(senderID, postbackMessage, "help");
-      break;
-  }
+  // switch(payload) {
+  //   case "PAYLOAD_GETTING_STARTED":
+  //     postbackMessage = helpText;
+  //     sendTextMessage(senderID, postbackMessage, "help");
+  //     break;
+  //   default: 
+  //     postbackMessage = helpText;
+  //     sendTextMessage(senderID, postbackMessage, "help");
+  //     break;
+  // }
 }
 
 

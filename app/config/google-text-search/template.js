@@ -21,7 +21,6 @@ async function configElements(data) {
 
 async function sendTextSearch(searchResults, recipientId) {
   try {
-    console.log(searchResults, "===============")
     const elementParts = await configElements(searchResults);
     const actionData = {
       recipient: {
@@ -37,7 +36,6 @@ async function sendTextSearch(searchResults, recipientId) {
         }
       }
     }
-    console.log(elementParts)
     callSendAPI(actionData);
   } catch(e) {
     console.log(e, "error generating temp buttons");

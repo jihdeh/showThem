@@ -9,7 +9,8 @@ async function googleRequestAPI(data) {
       params: { key: process.env.GOOGLE_API_KEY, query: data.query },
       method: "get"
     });
-    const endResponse = await getRequestImages(response.data.results);
+    const newResponse = response.data.results.splice(0, 3);
+    const endResponse = await getRequestImages(newResponse);
     return endResponse;
   } catch (error) {
     console.trace("error fetching place", error);

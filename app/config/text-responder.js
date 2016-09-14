@@ -7,6 +7,7 @@ import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
   console.log(text)
+    // if (text === "")
   destructureText(text).then(response => {
     sendTextSeachResult(response, recipientId);
   });
@@ -22,7 +23,7 @@ async function destructureText(text) {
 }
 
 async function compose(keyword, searchTerm) {
-  switch(keyword) {
+  switch (keyword) {
     case "show me":
       return await textSearch(searchTerm);
       break;
@@ -30,7 +31,7 @@ async function compose(keyword, searchTerm) {
       return "Sorry command is incorrect, please check";
       break;
   }
-} 
+}
 
 async function sendTextMessage(recipientId, messageText, postback) {
   let response;
@@ -39,8 +40,7 @@ async function sendTextMessage(recipientId, messageText, postback) {
     response = messageText;
   } else if (genericResponse.greetings.includes(messageText)) {
     response = `Hi There!\nHow may i help you 🎩?`;
-  }
-  else if (genericResponse.byes.includes(messageText)) {
+  } else if (genericResponse.byes.includes(messageText)) {
     response = `Alright! Thank you, bye now 🙏`;
   } else {
     return listener(messageText, recipientId);
