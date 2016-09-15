@@ -30,6 +30,7 @@ function getFirstTwoKeywords(text) {
 }
 async function destructureText(text) {
   let checkKeyword = getFirstTwoKeywords(text);
+  console.log(checkKeyword);
   if (checkKeyword) {
     let searchTerm = checkKeyword.join(" ");
     return await composeText(checkKeyword, searchTerm);
@@ -44,7 +45,7 @@ async function composeText(keyword, searchTerm) {
       return await textSearch(searchTerm);
       break;
     default:
-      return "Sorry command on default is incorrect, please check page";
+      return "Sorry command not recognized, please check page";
       break;
   }
 }
@@ -59,7 +60,12 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      return listener(messageText, recipientId);
+      console.log(getFirstTwoKeywords(messageText));
+      if(getFirstTwoKeywords(messageText)) {
+        return listener(messageText, recipientId);
+      } else {
+        sendMessage(recipientId, "Sorry command not recognized, please check page");
+      }
     }
   }
 }
