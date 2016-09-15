@@ -11,6 +11,7 @@ async function googleRequestAPI(data) {
       params: { key: process.env.GOOGLE_API_KEY, query: data.query },
       method: "get"
     });
+    console.log("elllo", newResponse)
     const newResponse = response.data.results.splice(0, 10);
     if (newResponse.length > 0) {
       const endResponse = await getRequestImages(newResponse);
