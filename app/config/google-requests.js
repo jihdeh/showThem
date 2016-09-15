@@ -31,7 +31,11 @@ async function getRequestImages(candidates) {
         const findImage = await TextModel.find({ name: result.name }).lean();
         const photoReference = get(result, "photos.[0].photo_reference");
         if (get(findImage, "[0]")) {
-          result = Object.assign({}, result, { image_url: get(findImage, "[0].image_url") });
+          result = Object.assign({},
+            result, {
+              image_url: get(findImage, "[0].image_url"),
+              item_url: get(findImage, "[0].image_url")
+            });
         } else if (photoReference !== undefined & get(findImage, "[0]") === undefined) {
           try {
             const res = await axios({
@@ -41,7 +45,11 @@ async function getRequestImages(candidates) {
             });
             const data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(res.data).toString('base64');
             const cloudResponse = await cloudinary.v2.uploader.upload(data, { public_id: result.id });
-            result = Object.assign({}, result, { image_url: cloudResponse.secure_url });
+            result = Object.assign({},
+              result, {
+                image_url: cloudResponse.secure_url,
+                item_url: cloudResponse.secure_url
+              });
             const saveTextSearchImageUrl = new TextModel();
             saveTextSearchImageUrl.name = result.name;
             saveTextSearchImageUrl.image_url = result.image_url;
