@@ -18,25 +18,16 @@ async function listener(text, recipientId) {
 }
 
 // listener("show me restaurants in yaba nigeria");
-
+console.log(keywords.includes(getFirstTwoKeywords("street view restaurcates")))
 function getFirstTwoKeywords(text) {
-  if (text) {
-    let newText = text.split(" ");
-    let checkKeyword = newText.splice(0, 2).join(" ");
-    return checkKeyword;
-  } else {
-    return false;
-  }
+  let newText = text.split(" ");
+  let checkKeyword = newText.splice(0, 2).join(" ");
+  return checkKeyword;
 }
 async function destructureText(text) {
   let checkKeyword = getFirstTwoKeywords(text);
-  console.log(checkKeyword);
-  if (checkKeyword) {
-    let searchTerm = checkKeyword.join(" ");
-    return await composeText(checkKeyword, searchTerm);
-  } else {
-    return false;
-  }
+  let searchTerm = checkKeyword.join(" ");
+  return await composeText(checkKeyword, searchTerm);
 }
 
 async function composeText(keyword, searchTerm) {
@@ -60,8 +51,8 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      console.log(getFirstTwoKeywords(messageText));
-      if(getFirstTwoKeywords(messageText)) {
+      console.log(keywords.includes(getFirstTwoKeywords(messageText)));
+      if (keywords.includes(getFirstTwoKeywords(messageText))) {
         return listener(messageText, recipientId);
       } else {
         sendMessage(recipientId, "Sorry command not recognized, please check page");
