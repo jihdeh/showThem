@@ -14,7 +14,7 @@ async function listener(text, recipientId) {
           sendTextSeachResult(response, recipientId);
         } else {
           sendMessage(recipientId, `
-            Arggh sadly your search returned no results \nWhat if you try your search and you add your state/country? after? \nFor Example: show me party clubs newyork or show me shaunz bar lagos`);
+            Arggh sadly your search returned no results \n\nWhat if you try your search and you add your state/country? after? \n\nFor Example: \nshow me party clubs newyork \nor \nshow me shaunz bar lagos`);
         }
       });
     } else {
@@ -43,8 +43,6 @@ async function composeText(keyword, searchTerm) {
       break;
   }
 }
-
-
 
 async function sendTextMessage(recipientId, messageText, postback) {
   messageText = messageText.toLowerCase();
