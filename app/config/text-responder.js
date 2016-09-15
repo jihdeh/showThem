@@ -6,9 +6,7 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
-  console.log("entered here");
   destructureText(text).then(response => {
-    console.log(response)
     if (response) {
       sendTextSeachResult(response, recipientId);
     } else {
@@ -22,11 +20,11 @@ async function listener(text, recipientId) {
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
-  return checkKeyword;
+  return {checkKeyword, newText};
 }
 async function destructureText(text) {
-  let checkKeyword = getFirstTwoKeywords(text);
-  let searchTerm = checkKeyword.join(" ");
+  let {checkKeyword, newText} = getFirstTwoKeywords(text);
+  let searchTerm = newText.join(" ");
   return await composeText(checkKeyword, searchTerm);
 }
 
@@ -51,8 +49,9 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      console.log(keywords.includes(getFirstTwoKeywords(messageText)));
-      if (keywords.includes(getFirstTwoKeywords(messageText))) {
+      let {checkKeyword} = getFirstTwoKeywords(messageText)
+      console.log(checkKeyword, "checkKeyword");
+      if (keywords.includes(checkKeyword)) {
         return listener(messageText, recipientId);
       } else {
         sendMessage(recipientId, "Sorry command not recognized, please check page");
