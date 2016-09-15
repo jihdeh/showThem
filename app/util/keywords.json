@@ -1,4 +1,4 @@
 { 
-  "show": "show me",
-  "street": "street view"
+  "show": ["show me"],
+  "street": ["street view"]
 }

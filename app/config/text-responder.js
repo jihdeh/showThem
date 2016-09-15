@@ -17,15 +17,25 @@ async function listener(text, recipientId) {
   });
 }
 
-console.log(/shw me/i.test("show me restaurants in yaba nigeria"))
-
 // listener("show me restaurants in yaba nigeria");
 
+function getFirstTwoKeywords(text) {
+  if (text) {
+    let newText = text.split(" ");
+    let checkKeyword = newText.splice(0, 2).join(" ");
+    return checkKeyword;
+  } else {
+    return false;
+  }
+}
 async function destructureText(text) {
-  let newText = text.split(" ");
-  let checkKeyword = newText.splice(0, 2).join(" ");
-  let searchTerm = newText.join(" ");
-  return await composeText(checkKeyword, searchTerm);
+  let checkKeyword = getFirstTwoKeywords(text);
+  if (checkKeyword) {
+    let searchTerm = checkKeyword.join(" ");
+    return await composeText(checkKeyword, searchTerm);
+  } else {
+    return false;
+  }
 }
 
 async function composeText(keyword, searchTerm) {
@@ -49,12 +59,7 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      console.log(/[messageText]/i.test("show me restaurants in yaba nigeria"), "test vars")
-      if (/[keywords.show]/i.test(messageText)) {
-        return listener(messageText, recipientId);
-      } else {
-        return sendMessage(recipientId, `Sorry command on show is incorrect, please check page`);
-      }
+      return listener(messageText, recipientId);
     }
   }
 }
