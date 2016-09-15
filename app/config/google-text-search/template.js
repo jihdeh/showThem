@@ -10,6 +10,7 @@ async function configElements(data) {
     el.push({
       title: value.name,
       image_url: value.image_url,
+      item_url: value.item_url,
       subtitle: value.formatted_address + " \n, Open?: " + subFomat,
       buttons: [{
         type: "element_share"
