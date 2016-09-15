@@ -6,6 +6,7 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 
 async function listener(text, recipientId) {
+  console.log("entered here");
   destructureText(text).then(response => {
     console.log(response)
     if (response) {
@@ -18,7 +19,6 @@ async function listener(text, recipientId) {
 }
 
 // listener("show me restaurants in yaba nigeria");
-console.log(keywords.includes(getFirstTwoKeywords("street view restaurcates")))
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
