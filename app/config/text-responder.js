@@ -1,6 +1,6 @@
 import sendMessage from "./send-message";
 import helpText from "../util/helper-text";
-import textSearch from "./google-text-search";
+import textSearch from "./search";
 import genericResponse from "../util/generic-response-text";
 import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
@@ -16,7 +16,7 @@ async function listener(text, recipientId) {
   });
 }
 
-// listener("show me restaurants in yaba nigeria");
+// listener("map on restaurants in yaba nigeria");
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
@@ -31,7 +31,10 @@ async function destructureText(text) {
 async function composeText(keyword, searchTerm) {
   switch (keyword) {
     case "show me":
-      return await textSearch(searchTerm);
+      return await textSearch(searchTerm, "photo");
+      break;
+    case "map on":
+      return await textSearch(searchTerm, "map");
       break;
     default:
       return "Sorry command not recognized, please check page";
