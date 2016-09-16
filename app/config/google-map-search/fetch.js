@@ -25,7 +25,7 @@ export default async function getRequestImages(candidates) {
               params: {
                 key: process.env.GOOGLE_API_KEY,
                 zoom: 16,
-                size: "800x600",
+                size: "600x400",
                 maptype: "roadmap",
                 markers: decodeURIComponent("color:red%7Clabel:S%7C") + `${latitudeReference}` + "," + `${longitudeReference}`
               },
