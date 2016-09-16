@@ -6,6 +6,8 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 import locationResponse from "./location";
 import uberResponse from "./uber";
+import helpText from "../util/helper-text";
+
 
 async function listener(text, recipientId) {
   destructureText(text).then(response => {
@@ -55,11 +57,11 @@ async function composeText(keyword, searchTerm) {
   }
 }
 
-async function sendTextMessage(recipientId, messageText, postback) {
+async function sendTextMessage(recipientId, messageText) {
   messageText = messageText.toLowerCase();
   if (recipientId) {
-    if (postback === "help") {
-      return sendMessage(recipientId, messageText);
+    if (messageText === "help") {
+      return sendMessage(recipientId, helpText);
     } else if (genericResponse.greetings.includes(messageText)) {
       return sendMessage(recipientId, `Hi There!\nHow may i help you 🎩?`);
     } else if (genericResponse.byes.includes(messageText)) {

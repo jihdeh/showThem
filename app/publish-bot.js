@@ -1,7 +1,7 @@
 import welcomeGreeting from "./config/welcome-greeting";
 import sendActions from "./config/sender-actions";
 import sendTextMessage from "./config/text-responder";
-import helpText from "./util/helper-text";
+
 
 function* webhook() {
   const data = this.request.body;
@@ -94,15 +94,13 @@ function receivedPostback(event) {
     "at %d", senderID, recipientID, payload, timeOfPostback);
   switch(payload) {
     case "PAYLOAD_GETTING_STARTED":
-      postbackMessage = helpText;
-      sendTextMessage(senderID, postbackMessage, "help");
+      sendTextMessage(senderID, "help");
       break;
     case "PAYLOAD_LOCATION":
       sendTextMessage(senderID, "my location");
       break;
     default: 
-      postbackMessage = helpText;
-      sendTextMessage(senderID, postbackMessage, "help");
+      sendTextMessage(senderID, "help");
       break;
   }
 }
