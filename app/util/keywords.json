@@ -1,1 +1,4 @@
-["show me", "map on"]
+{
+  "v1": ["show me", "map on"],
+  "v2": ["my location"]
+}

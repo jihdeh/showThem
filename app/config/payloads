@@ -15,14 +15,23 @@ curl -X POST -H "Content-Type: application/json" -d '{
     },
     {
       "type":"postback",
-      "title":"Get Parallel Rates",
-      "payload":"PAYLOAD_PARALLEL"
-    },
-    {
-      "type":"postback",
-      "title":"Manage Notifications",
-      "payload":"PAYLOAD_USER_OPTIN"
+      "title":"My Location",
+      "payload":"PAYLOAD_LOCATION"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAHQl22ysgcBAOZBz5uEgUNxSfzjfsZCh4WklAfGmmaJHMtxTlZBsXvZCZC9lzb0krjKljQIerkd0GG3UarVueGT7AP3wV0s9hj1tmeQauakxwmNAMmaply03WSqKecZBsiIWkjHNP2sgQQP3ZBB1JnMeKB4jZBx3SORxgpTCvMZAEAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAQ03FOwCLsBACBrvnTJL95mzr4bhvjx4ZCq3HEgHxhCDni2FGJIOp1wJ55yZCF3LFKoZCHQCKbFRfDO4qAMUCBbq88kxK2gyDrNJVZB8uUmCuWUPYjZCILxQDUt8aVXzOAnl9d0YT1LLOR4R1pAvkvmiR7xFtY2FtOV62NAChwZDZD"
  
+
+ curl -X POST -H "Content-Type: application/json" -d '{
+  "recipient":{
+    "id":"1068174056585746"
+  },
+  "message":{
+    "text":"Please share your location:",
+    "quick_replies":[
+      {
+        "content_type":"location",
+      }
+    ]
+  }
+}' "https://graph.facebook.com/v2.6/me/messages?access_token=EAAQ03FOwCLsBACBrvnTJL95mzr4bhvjx4ZCq3HEgHxhCDni2FGJIOp1wJ55yZCF3LFKoZCHQCKbFRfDO4qAMUCBbq88kxK2gyDrNJVZB8uUmCuWUPYjZCILxQDUt8aVXzOAnl9d0YT1LLOR4R1pAvkvmiR7xFtY2FtOV62NAChwZDZD"

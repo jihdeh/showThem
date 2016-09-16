@@ -4,6 +4,7 @@ import textSearch from "./search";
 import genericResponse from "../util/generic-response-text";
 import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
+import locationResponse from "./location";
 
 async function listener(text, recipientId) {
   destructureText(text).then(response => {
@@ -16,7 +17,11 @@ async function listener(text, recipientId) {
   });
 }
 
-// listener("map on restaurants in yaba nigeria");
+function listenerV2(text, recipientId) {
+  return locationResponse(recipientId);
+}
+
+// listenerV2("my location");
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
@@ -52,11 +57,13 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      let {checkKeyword} = getFirstTwoKeywords(messageText)
-      console.log(checkKeyword, "checkKeyword");
-      if (keywords.includes(checkKeyword)) {
+      let {checkKeyword} = getFirstTwoKeywords(messageText);
+      if (keywords.v1.includes(checkKeyword)) {
         return listener(messageText, recipientId);
-      } else {
+      } else if(keywords.v2.includes(checkKeyword)) {
+        return listenerV2(messageText, recipientId);
+      }
+       else {
         sendMessage(recipientId, "Sorry command not recognized, please check page");
       }
     }

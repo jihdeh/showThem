@@ -63,7 +63,7 @@ async function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
-    console.log("message attachment received");
+    console.log("message attachment received", messageAttachments);
     // sendTextMessage(senderID, "Message with attachment received");
   }
 }
