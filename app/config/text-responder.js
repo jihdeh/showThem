@@ -6,7 +6,6 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 import locationResponse from "./location";
 import uberResponse from "./uber";
-import helpText from "../util/helper-text";
 
 
 async function listener(text, recipientId) {
