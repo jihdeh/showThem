@@ -29,8 +29,6 @@ function listenerV3(recipientId) {
   return uberResponse(recipientId);
 }
 
-listenerV3("uber");
-
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
