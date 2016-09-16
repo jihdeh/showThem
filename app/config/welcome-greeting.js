@@ -4,7 +4,7 @@ function sendGreetingText() {
   const messageData = {
     setting_type: "greeting",
     greeting: {
-      "text": "Welcome to SHOW-THEM-PLACES, instant maps guide at your service"
+      "text": "Welcome to SHOW-THEM-PLACES, instant locations guide at your service"
     }
   }
   callSendGreetingText(messageData);
