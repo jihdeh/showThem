@@ -5,6 +5,7 @@ import genericResponse from "../util/generic-response-text";
 import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 import locationResponse from "./location";
+import uberResponse from "./uber";
 
 async function listener(text, recipientId) {
   destructureText(text).then(response => {
@@ -17,18 +18,26 @@ async function listener(text, recipientId) {
   });
 }
 
-function listenerV2(text, recipientId) {
+//location only
+function listenerV2(recipientId) {
   return locationResponse(recipientId);
 }
 
-// listenerV2("my location");
+//uber ish
+function listenerV3(recipientId) {
+  console.log("oyas")
+  return uberResponse(recipientId);
+}
+
+listenerV3("uber");
+
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
   let checkKeyword = newText.splice(0, 2).join(" ");
-  return {checkKeyword, newText};
+  return { checkKeyword, newText };
 }
 async function destructureText(text) {
-  let {checkKeyword, newText} = getFirstTwoKeywords(text);
+  let { checkKeyword, newText } = getFirstTwoKeywords(text);
   let searchTerm = newText.join(" ");
   return await composeText(checkKeyword, searchTerm);
 }
@@ -36,6 +45,7 @@ async function destructureText(text) {
 async function composeText(keyword, searchTerm) {
   switch (keyword) {
     case "show me":
+    case "where is":
       return await textSearch(searchTerm, "photo");
       break;
     case "map on":
@@ -57,13 +67,12 @@ async function sendTextMessage(recipientId, messageText, postback) {
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
     } else {
-      let {checkKeyword} = getFirstTwoKeywords(messageText);
+      let { checkKeyword } = getFirstTwoKeywords(messageText);
       if (keywords.v1.includes(checkKeyword)) {
         return listener(messageText, recipientId);
-      } else if(keywords.v2.includes(checkKeyword)) {
-        return listenerV2(messageText, recipientId);
-      }
-       else {
+      } else if (keywords.v2.includes(messageText)) {
+        return listenerV2(recipientId);
+      } else {
         sendMessage(recipientId, "Sorry command not recognized, please check page");
       }
     }

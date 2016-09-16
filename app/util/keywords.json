@@ -1,4 +1,5 @@
 {
-  "v1": ["show me", "map on"],
-  "v2": ["my location", "where am i", "please help", "locate", "location"]
+  "v1": ["show me", "where is", "map on"],
+  "v2": ["my location", "where am i?", "where am i", "please help", "locate", "location"],
+  "v3": ["uber"]
 }
