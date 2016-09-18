@@ -45,6 +45,7 @@ async function composeText(keyword, searchTerm) {
   switch (keyword) {
     case "show me":
     case "where is":
+    case "how about":
       return await textSearch(searchTerm, "photo");
       break;
     case "map on":
