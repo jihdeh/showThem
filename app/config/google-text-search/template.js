@@ -1,5 +1,7 @@
 import callSendAPI from "../send-requests";
 import { map, get } from "lodash";
+import sendAfterAttachment from "./after-attachment-sent";
+
 
 
 async function configElements(data) {
@@ -38,6 +40,7 @@ async function sendTextSearch(searchResults, recipientId) {
       }
     }
     callSendAPI(actionData);
+    sendAfterAttachment(recipientId);
   } catch(e) {
     console.log(e, "error generating temp buttons");
   }

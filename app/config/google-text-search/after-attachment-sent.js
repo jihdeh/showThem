@@ -7,7 +7,7 @@ export default function AfterSent(recipientId) {
     },
     message: {
       text: "To get close to accurate results, please add your state and/or country to your search\
-      \nFor example: show me the great wall of china or \n show me maryland mall at maryland lagos nigeria"
+      \n\nFor example: show me the great wall of china or \nshow me maryland mall at maryland lagos nigeria"
     }
   }
   callSendAPI(actionData);
