@@ -43,7 +43,7 @@ async function receivedMessage(event) {
   const messageText = message.text;
   const messageAttachments = message.attachments;
   console.log(message);
-  if (messageText & !get(JSON.stringify(message), "is_echo")) {
+  if (messageText & (get(message, "is_echo") !== true)) {
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
