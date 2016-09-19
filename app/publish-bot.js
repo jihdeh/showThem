@@ -42,8 +42,8 @@ async function receivedMessage(event) {
   // You may get a text or attachment but not both
   const messageText = message.text;
   const messageAttachments = message.attachments;
-  console.log(get(messageText, "is_echo"));
-  if (messageText & !get(messageText, "is_echo")) {
+  console.log(get(message, "is_echo"));
+  if (messageText & !get(message, "is_echo")) {
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
