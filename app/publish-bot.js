@@ -42,6 +42,7 @@ async function receivedMessage(event) {
   // You may get a text or attachment but not both
   const messageText = message.text;
   const messageAttachments = message.attachments;
+  console.log(message);
   if (messageText) {
 
     // If we receive a text message, check to see if it matches any special
@@ -50,10 +51,9 @@ async function receivedMessage(event) {
     switch (messageText) {
       default: 
       try {
-        console.log(senderID, "=======")
-        senderID && await sendActions(senderID);
+        await sendActions(senderID);
       } catch (error) {
-        console.log(error, "occured sending actions")
+        console.log(error)
       }
       sendTextMessage(senderID, messageText);
     }
