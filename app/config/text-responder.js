@@ -4,6 +4,7 @@ import textSearch from "./search";
 import genericResponse from "../util/generic-response-text";
 import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
+import sendAfterAttachment from "./google-text-search/after-attachment-sent";
 import locationResponse from "./location";
 import uberResponse from "./uber";
 
@@ -11,7 +12,9 @@ import uberResponse from "./uber";
 async function listener(text, recipientId) {
   destructureText(text).then(response => {
     if (response) {
-      sendTextSeachResult(response, recipientId);
+      sendTextSeachResult(response, recipientId).then(() => {
+        sendAfterAttachment(recipientId);
+      });
     } else {
       sendMessage(recipientId, `
             Arggh sadly your search returned no results \n\nWhat if you try your search and you add your state/country? after? \n\nFor Example: \nshow me party clubs newyork \nor \nshow me shaunz bar lagos`);
