@@ -42,7 +42,7 @@ async function receivedMessage(event) {
   // You may get a text or attachment but not both
   const messageText = message.text;
   const messageAttachments = message.attachments;
-  console.log(message, get(message, "is_echo"), JSON.parse(message));
+  console.log(message, JSON.parse(message));
   if (messageText & !message.is_echo) {
 
     // If we receive a text message, check to see if it matches any special
