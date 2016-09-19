@@ -1,4 +1,5 @@
 {
   "greetings": ["hi", "hello", "hey", "morning", "afternoon", "evening", "sups"],
-  "byes": ["thank you", "thanks", "bye"]
+  "byes": ["thank you", "thanks", "bye"],
+  "hails": ["show them", "showthem", "begin"]
 }

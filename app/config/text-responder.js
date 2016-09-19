@@ -68,6 +68,8 @@ async function sendTextMessage(recipientId, messageText) {
       return sendMessage(recipientId, `Hi There!\nHow may i help you 🎩?`);
     } else if (genericResponse.byes.includes(messageText)) {
       return sendMessage(recipientId, `Alright! Thank you, bye now 🙏`);
+    } else if (genericResponse.hails.includes(messageText)) {
+      return sendMessage(recipientId, `That's me! What would you like to be shown?🔥`);
     } else {
       let { checkKeyword } = getFirstTwoKeywords(messageText);
       if (keywords.v1.includes(checkKeyword)) {
