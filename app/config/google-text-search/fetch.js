@@ -13,7 +13,7 @@ export default async function getRequestImages(candidates) {
         if (get(findImage, "[0]")) {
           result = Object.assign({},
             result, {
-              image_url: get(findImage, "[0].image_url"),
+              image_url: get(findImage, "[0].image_url") || result.icon,
               item_url: get(findImage, "[0].image_url")
             });
         } else if (photoReference !== undefined && get(findImage, "[0]") === undefined) {
