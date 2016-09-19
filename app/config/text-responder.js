@@ -51,7 +51,7 @@ async function composeText(keyword, searchTerm) {
       return await textSearch(searchTerm, "map");
       break;
     default:
-      return false;
+      return "Sorry command not recognized, please check page";
       break;
   }
 }

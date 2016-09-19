@@ -1,7 +1,7 @@
 import welcomeGreeting from "./config/welcome-greeting";
 import sendActions from "./config/sender-actions";
 import sendTextMessage from "./config/text-responder";
-
+import {get} from "lodash";
 
 function* webhook() {
   const data = this.request.body;
@@ -43,7 +43,7 @@ async function receivedMessage(event) {
   const messageText = message.text;
   const messageAttachments = message.attachments;
 
-  if (messageText) {
+  if (messageText & !get(messageText, "is_echo")) {
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
