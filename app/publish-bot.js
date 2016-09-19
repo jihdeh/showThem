@@ -49,12 +49,14 @@ async function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      default: try {
-        await sendActions(senderID);
-      } catch (error) {
-        console.log(error)
+      default: if (senderID) {
+        try {
+          await sendActions(senderID);
+        } catch (error) {
+          console.log(error)
+        }
+        sendTextMessage(senderID, messageText);
       }
-      sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
     console.log("message attachment received", messageAttachments);
@@ -84,14 +86,14 @@ function receivedPostback(event) {
 
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
-  switch(payload) {
+  switch (payload) {
     case "PAYLOAD_GETTING_STARTED":
       sendTextMessage(senderID, "help");
       break;
     case "PAYLOAD_LOCATION":
       sendTextMessage(senderID, "my location");
       break;
-    default: 
+    default:
       sendTextMessage(senderID, "help");
       break;
   }
