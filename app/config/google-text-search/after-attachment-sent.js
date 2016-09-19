@@ -10,7 +10,5 @@ export default function AfterSent(recipientId) {
       \n\nFor example: show me the great wall of china or \nshow me maryland mall at maryland lagos nigeria"
     }
   }
-  setTimeout(() => {
-    callSendAPI(actionData);
-  },2000)
+  callSendAPI(actionData);
 }
