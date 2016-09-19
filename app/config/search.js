@@ -1,4 +1,5 @@
 import googleRequest from "./google-requests";
+import UserModel from "../model/user-model";
 const API_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
 async function search(searchText, type) {

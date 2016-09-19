@@ -26,7 +26,6 @@ function listenerV2(recipientId) {
 
 //uber ish
 function listenerV3(recipientId) {
-  console.log("oyas")
   return uberResponse(recipientId);
 }
 

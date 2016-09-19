@@ -6,7 +6,7 @@ async function configElements(data) {
   let el = [];
   map(data, (value) => {
 
-    let subFomat = get(value, "opening_hours.open_now") ? value.opening_hours.open_now : "I'm unsure";
+    let subFomat = get(value, "opening_hours.open_now") ? (value.opening_hours.open_now) ? "Yes" : "" : "I'm unsure";
     el.push({
       title: value.name,
       image_url: get(value, "image_url") || get(value, "map_url"),

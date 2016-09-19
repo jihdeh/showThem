@@ -10,7 +10,6 @@ function* webhook() {
     welcomeGreeting();
 
     data.entry.forEach(function(pageEntry) {
-
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
         if (messagingEvent.message) {
@@ -24,11 +23,6 @@ function* webhook() {
         }
       });
     });
-
-    // Assume all went well.
-    //
-    // You must send back a 200, within 20 seconds, to let us know you've 
-    // successfully received the callback. Otherwise, the request will time out.
     this.status = 200;
   }
 }
@@ -86,8 +80,6 @@ function receivedPostback(event) {
   const senderID = event.sender.id;
   const recipientID = event.recipient.id;
   const timeOfPostback = event.timestamp;
-  let postbackMessage;
-
   const payload = event.postback.payload;
 
   console.log("Received postback for user %d and page %d with payload '%s' " +
