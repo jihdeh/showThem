@@ -51,6 +51,7 @@ async function composeText(keyword, searchTerm) {
       return await textSearch(searchTerm, "photo");
       break;
     case "map on":
+    case "map of":
       return await textSearch(searchTerm, "map");
       break;
     default:
