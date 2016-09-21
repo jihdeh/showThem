@@ -6,8 +6,6 @@ import keywords from "../util/keywords";
 import sendTextSeachResult from "./google-text-search/template";
 import sendAfterAttachment from "./google-text-search/after-attachment-sent";
 import locationResponse from "./location";
-import uberResponse from "./uber";
-
 
 async function listener(text, recipientId) {
   destructureText(text).then(response => {
@@ -27,10 +25,6 @@ function listenerV2(recipientId) {
   return locationResponse(recipientId);
 }
 
-//uber ish
-function listenerV3(recipientId) {
-  return uberResponse(recipientId);
-}
 
 function getFirstTwoKeywords(text) {
   let newText = text.split(" ");
