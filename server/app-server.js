@@ -5,6 +5,7 @@ import cluster from "cluster";
 
 import App from "./app";
 import mongoose from "mongoose";
+mongoose.Promise = global.Promise;
 import mongoConnectionString from "../util/mongo-connection-string";
 
 function startMaster() {
